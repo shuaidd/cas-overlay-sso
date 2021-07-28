@@ -229,3 +229,7 @@ that can later be examined. You will find a full list of CAS settings along with
 ```bash
 ./gradlew exportConfigMetadata
 ```                           
+默认账号
+``` 
+casuser：Mellon
+```

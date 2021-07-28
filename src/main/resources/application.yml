@@ -1,3 +1,14 @@
 # Application properties that need to be
 # embedded within the web application can be included here
 
+server:
+  port: 8899
+  ssl:
+    enabled: false
+cas:
+  tgc:
+    name: 'sso-tgc'
+    domain: 'kfmy.shinyway.org'
+  service-registry:
+    core:
+      init-from-json: true

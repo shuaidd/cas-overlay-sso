@@ -171,7 +171,7 @@ task createKeystore(group: "CAS", description: "Create CAS keystore") {
         def storeType = project.getProperty("storeType")
         def keystorePath = "$certDir/$serverKeyStore"
         def serverCert = "$certDir/$exportedServerCert"
-        
+
         mkdir certDir
 
         def dn = "CN=cas.example.org,OU=Example,OU=Org,C=US"
@@ -305,7 +305,7 @@ task listTemplateViews(group: "CAS", description: "List all CAS views") {
         fileTree(explodedResourcesDir).matching {
             include "**/*.html"
         }
-        .collect { 
+        .collect {
             return it.path.replace(explodedResourcesDir, "")
         }
         .toSorted()
@@ -416,7 +416,7 @@ task createTheme(group: "CAS", description: "Create theme directory structure in
                         "${theme}" {
                             fragments {
 
-                            } 
+                            }
                         }
                     }
 
@@ -471,6 +471,18 @@ dependencies {
 
     implementation "org.apereo.cas:cas-server-core-api-configuration-model"
     implementation "org.apereo.cas:cas-server-webapp-init"
+    implementation("org.apereo.cas:cas-server-core-services")
+    implementation("org.apereo.cas:cas-server-core-cookie")
+    implementation("org.apereo.cas:cas-server-core-webflow")
+    implementation("org.apereo.cas:cas-server-support-thymeleaf")
+    implementation("org.apereo.cas:cas-server-webapp-config")
+    implementation("org.apereo.cas:cas-server-core-webflow-api")
+
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.20'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.20'
 
     if (project.hasProperty("casModules")) {
         def dependencies = project.getProperty("casModules").split(",")
@@ -481,12 +493,12 @@ dependencies {
             projectsToAdd.each {implementation it}
         }
     }
-    
 
 
 
-    
-    
+
+
+
     developmentOnly "org.springframework.boot:spring-boot-devtools"
 }
 
@@ -526,7 +538,7 @@ bootWar {
 
             provided = false
             excludes = ["WEB-INF/lib/servlet-api-2*.jar"]
-            
+
             /*
             excludes = ["WEB-INF/lib/somejar-1.0*"]
             enableCompilation = true
